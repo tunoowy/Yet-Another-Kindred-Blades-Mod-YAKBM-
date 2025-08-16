@@ -1,0 +1,87 @@
+html *
+{
+	font-family: Helvetica;
+}
+.fix-master
+{
+	display: inline;		
+}
+.fix-icon
+{
+	background-image: url("fix.svg");
+	width: 20px; 
+	height: 20px;
+	color: #f9edbe;			
+}
+.improve-icon
+{
+	background-image: url("star.svg");
+	width: 20px; 
+	height: 20px;
+	color: "#f9edbe";	
+}
+.nfo-icon
+{
+	background-image: url("nfo.svg");
+	width: 20px; 
+	height: 20px;
+	color: "#f9edbe";	
+}
+.bad-icon
+{
+	background-image: url("bad.svg");
+	width: 20px; 
+	height: 20px;
+	color: "#f9edbe";	
+}
+.ce-icon
+{
+	background-image: url("Cheats_smal.png");
+	width: 20px; 
+	height: 20px;
+	color: "#f9edbe";	
+}
+.fix-text
+{
+	position: relative;		
+	left: 25px;	
+	top: -20px;		
+	margin-right: 35px;
+	margin-bottom: -15px;
+}  
+.features
+{
+	margin-bottom: 10px;
+	border-bottom: 1px solid #0000aa;
+} 
+.box
+{
+	background-color: #f9edbe;
+	border: 1px solid #0000aa;
+	margin-top: 10px;	
+	padding-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #0000aa;
+	font-size : 18px;
+}
+.center
+{
+	display: inline;
+	background-color: #f9edbe;
+	position: relative;		
+	left: 25px;
+	font-size: 20px;
+	color: #0000aa;
+} 	
+.warning{
+    background-color: #9b0000;
+    color           : white;
+    border          : 1px solid #0000aa;
+    margin-bottom      : 10px;
+    margin-left     : 5px;	
+    margin-right    : 5px;	
+	padding-top     : 5px;
+	padding-left    : 5px;
+	padding-right   : 5px;
+}

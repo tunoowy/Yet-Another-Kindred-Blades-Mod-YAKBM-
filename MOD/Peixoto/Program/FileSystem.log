@@ -1,0 +1,7 @@
+_FS_HOOKS::Init: Path                   : c:\program files (x86)\ubisoft\ubisoft game launcher\games\prince of persia the two thrones
+_FS_HOOKS::Init: Canonical              : c:\program files (x86)\ubisoft\ubisoft game launcher\games\prince of persia the two thrones
+_FS_HOOKS::Init: Canonical parent       : c:\program files (x86)\ubisoft\ubisoft game launcher\games
+_FS_HOOKS::Init: Canonical parent parent: c:\program files (x86)\ubisoft\ubisoft game launcher
+_FS_HOOKS::Init: Saves Canonical              : c:\users\boris\documents\games\prince of persia\the two thrones\saves
+_FS_HOOKS::Init: Saves Canonical parent       : c:\users\boris\documents\games\prince of persia\the two thrones\saves\.Saves
+_FS_HOOKS::Init: Saves Canonical parent parent: c:\users\boris\documents\games\prince of persia\the two thrones\saves\..Saves

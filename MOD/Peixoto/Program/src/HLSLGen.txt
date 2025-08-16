@@ -1,0 +1,600 @@
+; <COMPILER: v1.1.15.03>
+Class HLSL
+{
+static __movc := "float __movc(float src0, float src1, float src2)"
+. "`n{"
+. "`n    return (src0 == 0.0) ? src2 : src1;"
+. "`n};`n"
+RemoveSpaces(str)
+{
+while instr(str, "  ")
+str := StrReplace(str, "  ", " ")
+return str
+}
+Oprnd(Oprnd)
+{
+Oprnd := StrReplace(trim(Oprnd), "|", "abs(",,1)
+Oprnd := StrReplace(trim(Oprnd), "|", ")",,1)
+Oprnd := StrReplace(trim(Oprnd), "v[", "indexed_input[")
+Oprnd := StrReplace(trim(Oprnd), "v", "input.v")
+Oprnd := StrReplace(trim(Oprnd), "o", "OutPut.o")
+if instr(Oprnd, "l(")
+{
+Oprnd := StrReplace(Oprnd, "l(", "float@(")
+split := StrSplit(Oprnd, ",")
+Oprnd := StrReplace(Oprnd, "@", split.Length())
+return {"Oprnd" : Oprnd, "sz" : split.Length()}
+}
+if instr(Oprnd, "_abs")
+{
+Oprnd := StrReplace(Oprnd, "_abs", "")
+split := StrSplit(Oprnd, ".")
+return {"Oprnd" : "abs(" trim(Oprnd) ")", "sz" : strlen(trim(split[split.Length()]))}
+}
+split := StrSplit(Oprnd, ".")
+return {"Oprnd" : Oprnd, "sz" : strlen(trim(split[split.Length()]))}
+}
+RemoveLiterals(line)
+{
+lit   := []
+ocurr := 1
+while (start:=instr(line, "l(", , ,ocurr))
+{
+fin := instr(line, ")", ,start)
+l   := SubStr(line, start, fin+1-start)
+lit.Push(l)
+ocurr += 1
+}
+for k, v in lit
+{
+line := StrReplace(line, v, "@")
+}
+return {"ln" : line, "lt" : lit}
+}
+InsetLiterals(line, lit)
+{
+newline := []
+n       := 1
+for k, v in line
+{
+if (v="@")
+{
+newline.push(lit[n])
+n += 1
+} else newline.push(v)
+}
+return newline
+}
+Int(Oprnds)
+{
+for k, v in strsplit(Oprnds)
+HLSL["Oprnd" v].Oprnd := "int" HLSL["Oprnd" v].sz "(" HLSL["Oprnd" v].Oprnd ")"
+}
+UInt(Oprnds)
+{
+for k, v in strsplit(Oprnds)
+HLSL["Oprnd" v].Oprnd := "uint" HLSL["Oprnd" v].sz "(" HLSL["Oprnd" v].Oprnd ")"
+}
+Mask(s, Oprnd)
+{
+m := HLSL.GetMask(Oprnd.Oprnd)
+if (strlen(m) = 1)
+return s
+return "(" s ")." m
+}
+_Mask(s, Oprnd)
+{
+return "(" s ")."  HLSL.GetMask(Oprnd.Oprnd)
+}
+Sat(s)
+{
+return "saturate(" s ")"
+}
+UnMask(oprnd)
+{
+if ! (m := this.GetMask(oprnd))
+return oprnd
+return StrReplace(oprnd, "." m, "")
+}
+GetMask(oprnd)
+{
+if instr(oprnd, ")")
+oprnd := strsplit(oprnd, ")")[2]
+s     := strsplit(oprnd, ".")
+return trim(s[s.Length()])
+}
+ParseLine(l)
+{
+for k, v in l
+{
+i               := k-1
+HLSL["Oprnd" i] := HLSL.Oprnd(v)
+}
+}
+_Disable(asm)
+{
+ret  := HLSL.FromAsm(asm)
+main := "PxOutPut main(PxInput input)`n{`n" A_Tab "PxOutPut OutPut;`n"
+ret  := strsplit(ret, main)[1]
+if (HLSL.dsbl.crds && HLSL.dsbl.out && HLSL.dsbl.smplr && HLSL.dsbl.tex)
+{
+ret  := ret "float4 main(PxInput input)`n{`n" A_Tab "return " HLSL.dsbl.tex ".Sample(" HLSL.dsbl.smplr ",(input." HLSL.dsbl.crds ").xy);`n}"
+} else
+ret  := ret "float4 main(PxInput input):SV_Target`n{`n" A_Tab "return float4(1.,0.,1.,1.);`n};`n"
+return ret
+}
+FromAsm(asm)
+{
+HLSL.dsbl         := {}
+HLSL.Unrecognized := ""
+indnt      := A_Tab
+cmp0       := {"if_nz" : " == 0.", "if_z" : " != 0."}
+cmp1       := {"eq"  : " == ", "ne"  : " != ", "lt"  : " < ", "ge"  : ">="}
+cmpi       := {"ieq" : " == ", "ine" : " != ", "ilt" : " < ", "ige" : ">="}
+ops        := {"div" : "/", "mul" : "*", "add" : "+", "and" : "&&", "or" : "||"}
+ops_sat    := {"div_sat" : "/", "mul_sat" : "*", "add_sat" : "+"}
+opsi       := {"ishl" : "<<", "ishr" : ">>", "iadd" : "+"}
+mthds0     := {"sample" : "Sample"}
+mthds1     := {"sample_l" : "SampleLevel", "sample_b" : "SampleBias"}
+mthds2     := {"ldms" : "Load"}
+mthds3     := {"ld" : "Load"}
+funcs0     := {"mad" : "mad", "imad" : "mad"}
+funcs0_sat := {"mad_sat" : "mad"}
+funcs1     := {"dp4" : "dot", "dp3" : "dot", "dp2" : "dot", "min" : "min", "max" : "max"}
+funcs1_sat := {"max_sat" : "max", "dp4_sat" : "dot", "dp3_sat" : "dot", "dp2_sat" : "dot", "min_sat" : "min", "max_sat" : "max"}
+funcs1i    := {"imin" : "min", "imax" : "max"}
+funcs1u    := {"umin" : "min", "umax" : "max"}
+funcs2     := {"exp" : "exp", "exp2" : "exp2", "sqrt" : "sqrt", "rsq" : "rsqrt", "log" : "log2", "ftoi" : "asint", "frc" : "frac"
+, "itof" : "asfloat" ,"deriv_rtx" : "ddx", "deriv_rty" : "ddy", "round_ni" : "floor", "round_pi" : "ceil", "round_ne" : "round", "round_z" : "ceil"}
+inpts      := {}
+system     := {"position" : "SV_Position"}
+tex2dms    := {}
+tex2d      := {}
+tex2darray := {}
+texcb      := {}
+cbuff      := 0
+ncoords    := 0
+ntrgts     := 0
+Inpt       .= "struct PxInput `n{`n"
+Outpt      := "struct PxOutPut `n{`n"
+Glbls      := ""
+funcs      := {"main" : "PxOutPut main(PxInput input)`n{`n" A_Tab "PxOutPut OutPut;`n"}
+HLSL.insig  := strsplit( strsplit(asm, "Input signature:")[2], "Output signature")[1]
+HLSL.outsig := strsplit( strsplit(asm, "Output signature:")[2], "ps_")[1]
+in_smntcs   := []
+out_smntcs  := []
+in_indx   := 1
+out_indx  := 1
+for k, v in StrSplit("ps_4_0 ps_4_1 ps_5_0 ps_5_1", " ")
+{
+if instr(asm, v)
+{
+asm       := trim(trim(StrSplit(strsplit(asm, v)[2], "//")[1]), "`r`n")
+HLSL.prfl := v
+Glbls     := "//" v "@`n"
+break
+}
+}
+asm := StrReplace(asm, " + ", "+")
+sig := HLSL.RemoveSpaces(HLSL.insig)
+loop, parse, sig, `n
+{
+line := strsplit(trim(A_loopfield), " ")
+if (line[2] && !instr(line[2], "-") &&  !instr(line[2], "name"))
+in_smntcs.push( line[2] line[3] )
+}
+sig := HLSL.RemoveSpaces(HLSL.outsig)
+loop, parse, sig, `n
+{
+line := strsplit(trim(A_loopfield), " ")
+if (line[2] && !instr(line[2], "-") &&  !instr(line[2], "name"))
+out_smntcs.push( line[2] line[3] )
+}
+loop, parse, asm, `n
+{
+cmnt := ";" A_tab "//  " A_loopfield "`n"
+line := this.RemoveLiterals(trim(A_loopfield))
+lst  := StrSplit(StrReplace(line["ln"], ", ", " "), " ")
+line := this.InsetLiterals(lst, line.lt)
+HLSL.ParseLine(line)
+if instr(line[1], "dcl_")
+{
+if (line[1] = "dcl_constantbuffer")
+{
+size  := strsplit(strsplit(line[2], "[")[2], "]")[1]
+reg   := strsplit(strsplit(line[2], "CB")[2], "[")[1]
+Glbls .= "cbuffer cbuff" reg ": register (c" reg ") `n{`n" A_tab "float4 cb" reg "[" size "];`n};`n"
+}
+else if (instr(line[1], "dcl_input_ps"))
+{
+for k, v in line
+{
+if instr(v, ".")
+{
+reg    := strsplit(line[k], ".")[1]
+int    := StrReplace(k=4 ? line[k-2] " " line[k-1] : line[k-1], "constant", "nointerpolation")
+}
+}
+if (!inpts[reg])
+{
+inpts[reg] := True
+if (! smntcs)
+{
+smntcs  := "TEXCOORD" ncoords
+ncoords +=1
+} else smntcs := "SV_" smntcs
+smntcs  := in_smntcs[in_indx]
+in_indx += 1
+Inpt    .= indnt int " float4 " reg " : " smntcs ";`n"
+if ( instr(smntcs, "TEXCOORD") && !(HLSL.dsbl.crds) )
+HLSL.dsbl.crds := reg
+}
+}
+else if (line[1] = "dcl_output")
+{
+reg := strsplit(line[2], ".")[1]
+if (reg = "oDepth")
+Outpt .= indnt "float " reg " : SV_Depth;`n"
+else
+{
+if ( instr(out_smntcs[out_indx], "SV_Target") && !(HLSL.dsbl.out) )
+HLSL.dsbl.out := reg
+Outpt         .= indnt "float4 " reg " : " out_smntcs[out_indx] ";`n"
+out_indx      += 1
+}
+}
+else if (line[1] = "dcl_temps")
+{
+loop, % line[2]
+{
+n := A_Index-1
+funcs.main .= indnt "float4 r" n ";`n"
+}
+}
+else if (line[1] = "dcl_sampler")
+{
+Glbls .= "sampler " line[2] ";`n"
+if ( !HLSL.dsbl.smplr )
+HLSL.dsbl.smplr := line[2]
+}
+else if (line[1] = "dcl_indexrange")
+funcs.main .= indnt "float4 indexed_input[" in_indx-1 "] = input;`n"
+else if (line[1] = "dcl_resource_texture2d")
+{
+tex2d[line[3]] := True
+Glbls .= "texture2D " line[3] ";`n"
+if ( !HLSL.dsbl.tex )
+HLSL.dsbl.tex := line[3]
+}
+else if (instr(line[1], "dcl_resource_texture2dms"))
+{
+tex2dms[line[3]] := True
+smpls             := strsplit(strsplit(line[1], "(")[2], ")")[1]
+Glbls .= "Texture2DMS<float4, " smpls "> " line[3] cmnt
+}
+else if (instr(line[1], "dcl_resource_texture2darray"))
+{
+tex2darray[line[3]] := True
+Glbls .= "Texture2DArray<float4> " line[3] ";`n"
+}
+else if (line[1] = "dcl_resource_texturecube")
+{
+texcb[line[3]] := True
+Glbls .= "TextureCube " line[3] ";`n"
+}
+else if (line[1] = "dcl_resource_buffer")
+{
+tex2d[line[3]] := True
+t              := strsplit( strsplit(line[2], "(")[2], ",")[1] . strsplit(line[2], ",").Length()
+Glbls .= "Buffer <" t "> "line[3] ";`n"
+}
+}
+else if (i := ops[line[1]])
+{
+if ( (HLSL.Oprnd1.sz < HLSL.Oprnd2.sz) && (HLSL.Oprnd1.sz>1) )
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Mask(HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd, HLSL.Oprnd1) cmnt
+} else
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd cmnt
+}
+else if (i := opsi[line[1]])
+{
+HLSL.int("23")
+if ( (HLSL.Oprnd1.sz < HLSL.Oprnd2.sz) && (HLSL.Oprnd1.sz>1) )
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd, HLSL.Oprnd1) cmnt
+} else
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd cmnt
+}
+else if (i := ops_sat[line[1]])
+{
+if ( (HLSL.Oprnd1.sz < HLSL.Oprnd2.sz) && (HLSL.Oprnd1.sz>1) )
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Sat(HLSL.Mask( HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd, HLSL.Oprnd1)) cmnt
+} else
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Sat(HLSL.Oprnd2.Oprnd i HLSL.Oprnd3.Oprnd) cmnt
+}
+else if (i := mthds0[line[1]])
+{
+ojct := strsplit(this.Oprnd(line[4]).Oprnd, ".")[1]
+if      tex2d[ojct]
+HLSL.Oprnd2.Oprnd := "(" HLSL.Oprnd2.Oprnd ").xy"
+else if texcb[ojct] or tex2darray[ojct]
+HLSL.Oprnd2.Oprnd := "(" HLSL.Oprnd2.Oprnd ").xyz"
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(ojct "." i "(" HLSL.Oprnd4.Oprnd ", " HLSL.Oprnd2.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := mthds1[line[1]])
+{
+ojct := strsplit(this.Oprnd(line[4]).Oprnd, ".")[1]
+if      tex2d[ojct]
+HLSL.Oprnd2.Oprnd := "(" HLSL.Oprnd2.Oprnd ").xy"
+else if texcb[ojct] or tex2darray[ojct]
+HLSL.Oprnd2.Oprnd := "(" HLSL.Oprnd2.Oprnd ").xyz"
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(ojct "." i "(" HLSL.Oprnd4.Oprnd ", " HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd5.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := mthds2[line[1]])
+{
+ojct := strsplit(this.Oprnd(line[4]).Oprnd, ".")[1]
+if tex2d[ojct] or tex2dms[ojct]
+HLSL.Oprnd2.Oprnd := "int2((" HLSL.Oprnd2.Oprnd ").xy)"
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(ojct "." i "(" HLSL.Oprnd2.Oprnd ", int(" HLSL.Oprnd4.Oprnd "))", HLSL.Oprnd1) cmnt
+}
+else if (i := mthds3[line[1]])
+{
+ojct := strsplit(this.Oprnd(line[4]).Oprnd, ".")[1]
+if tex2d[ojct] or tex2dms[ojct]
+HLSL.Oprnd2.Oprnd := "int3((" HLSL.Oprnd2.Oprnd ").xyz)"
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(ojct "." i "(" HLSL.Oprnd2.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := funcs0[line[1]])
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ", " HLSL.Oprnd4.Oprnd ")",  HLSL.Oprnd1) cmnt
+}
+else if (i := funcs0_sat[line[1]])
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Sat(HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ", " HLSL.Oprnd4.Oprnd ")", HLSL.Oprnd1)) cmnt
+}
+else if (i := funcs1[line[1]])
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := funcs1_sat[line[1]])
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Sat(HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ")", HLSL.Oprnd1)) cmnt
+}
+else if (i := funcs1i[line[1]])
+{
+HLSL.int("23")
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := funcs1u[line[1]])
+{
+HLSL.uint("23")
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ", " HLSL.Oprnd3.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (i := funcs2[line[1]])
+{
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(i "(" HLSL.Oprnd2.Oprnd ")", HLSL.Oprnd1) cmnt
+}
+else if (line[1] = "mov")
+{
+if ( (HLSL.Oprnd1.sz < HLSL.Oprnd2.sz) && (HLSL.Oprnd1.sz>1) )
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.mask(HLSL.Oprnd2.Oprnd, HLSL.Oprnd1) cmnt
+else funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.Oprnd2.Oprnd cmnt
+}
+else if (line[1] = "mov_sat")
+{
+if ( (HLSL.Oprnd1.sz < HLSL.Oprnd2.sz) && (HLSL.Oprnd1.sz>1) )
+funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.sat(HLSL.mask(HLSL.Oprnd2.Oprnd, HLSL.Oprnd1)) cmnt
+else funcs.main .= indnt HLSL.Oprnd1.Oprnd " = " HLSL.sat(HLSL.Oprnd2.Oprnd) cmnt
+}
+else if (line[1] = "movc")
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+arg2_msk := strsplit(HLSL.GetMask(HLSL.Oprnd4.Oprnd))
+dest := HLSL.UnMask(HLSL.Oprnd1.Oprnd)
+arg0 := HLSL.UnMask(HLSL.Oprnd2.Oprnd)
+arg1 := HLSL.UnMask(HLSL.Oprnd3.Oprnd)
+arg2 := HLSL.UnMask(HLSL.Oprnd4.Oprnd)
+for k, v in dest_msk
+{
+d  := v           ?  dest "." v           : dest
+a0 := arg0_msk[k] ?  arg0 "." arg0_msk[k] : arg0
+a1 := arg1_msk[k] ?  arg1 "." arg1_msk[k] : arg1
+funcs.main .= indnt d " = " a0 " == 0.0 ? " a0 " : " a1 ";`n"
+}
+}
+else if (line[1] = "movc_sat")
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+arg2_msk := strsplit(HLSL.GetMask(HLSL.Oprnd4.Oprnd))
+dest := HLSL.UnMask(HLSL.Oprnd1.Oprnd)
+arg0 := HLSL.UnMask(HLSL.Oprnd2.Oprnd)
+arg1 := HLSL.UnMask(HLSL.Oprnd3.Oprnd)
+arg2 := HLSL.UnMask(HLSL.Oprnd4.Oprnd)
+for k, v in dest_msk
+{
+d  := v           ?  dest "." v           : dest
+a0 := arg0_msk[k] ?  arg0 "." arg0_msk[k] : arg0
+a1 := arg1_msk[k] ?  arg1 "." arg1_msk[k] : arg1
+funcs.main .= indnt d " = saturate(" a0 " == 0.0 ? " a0 " : " a1 ");`n"
+}
+}
+else if (i := cmp0[line[1]])
+{
+dest       := this.Oprnd(line[2]).Oprnd
+funcs.main .= indnt "if (" dest i ")`n" indnt "{`n"
+indnt .= A_tab
+}
+else if (i := cmp1[line[1]])
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+dest := HLSL.UnMask(HLSL.Oprnd1.Oprnd)
+arg0 := HLSL.UnMask(HLSL.Oprnd2.Oprnd)
+arg1 := HLSL.UnMask(HLSL.Oprnd3.Oprnd)
+for k, v in dest_msk
+{
+d  := v           ?  dest "." v           : dest
+a0 := arg0_msk[k] ?  arg0 "." arg0_msk[k] : arg0
+a1 := arg1_msk[k] ?  arg1 "." arg1_msk[k] : arg1
+funcs.main .= indnt d " = " a0 i a1 " ?  1.0 : 0.;`n"
+}
+}
+else if (i := cmpi[line[1]])
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+dest := HLSL.UnMask(HLSL.Oprnd1.Oprnd)
+arg0 := HLSL.UnMask(HLSL.Oprnd2.Oprnd)
+arg1 := HLSL.UnMask(HLSL.Oprnd3.Oprnd)
+for k, v in dest_msk
+{
+d  := v           ?  dest "." v           : dest
+a0 := arg0_msk[k] ?  arg0 "." arg0_msk[k] : arg0
+a1 := arg1_msk[k] ?  arg1 "." arg1_msk[k] : arg1
+funcs.main .= indnt d " = int(" a0 ") " i  "int(" a1 ") ?  1.0 : 0.;`n"
+}
+}
+else if (line[1] = "lt")
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+dest := HLSL.UnMask(HLSL.Oprnd1.Oprnd)
+arg0 := HLSL.UnMask(HLSL.Oprnd2.Oprnd)
+arg1 := HLSL.UnMask(HLSL.Oprnd3.Oprnd)
+for k, v in dest_msk
+{
+d  := v           ?  dest "." v           : dest
+a0 := arg0_msk[k] ?  arg0 "." arg0_msk[k] : arg0
+a1 := arg1_msk[k] ?  arg1 "." arg1_msk[k] : arg1
+funcs.main .= indnt d " = " a0 " < " a1 " ?  1.0 : 0.;`n"
+}
+}
+else if (line[1] = "ult")
+{
+dest_msk := strsplit(HLSL.GetMask(HLSL.Oprnd1.Oprnd))
+arg0_msk := strsplit(HLSL.GetMask(HLSL.Oprnd2.Oprnd))
+arg1_msk := strsplit(HLSL.GetMask(HLSL.Oprnd3.Oprnd))
+dest_msk ? dest_msk := "." dest_msk
+arg0_msk ? arg0_msk := "." arg0_msk
+arg1_msk ? arg1_msk := "." arg1_msk
+HLSL.Oprnd1.Oprnd := HLSL.UnMask(HLSL.Oprnd1.Oprnd) . dest_msk
+HLSL.Oprnd2.Oprnd := HLSL.UnMask(HLSL.Oprnd2.Oprnd) . arg0_msk
+HLSL.Oprnd3.Oprnd := HLSL.UnMask(HLSL.Oprnd3.Oprnd) . arg1_msk
+HLSL.uint("23")
+for k, v in dest_msk
+{
+d  := v           ?  HLSL.Oprnd1.Oprnd v           : HLSL.Oprnd1.Oprnd
+a0 := arg0_msk[k] ?  HLSL.Oprnd2.Oprnd arg0_msk[k] : HLSL.Oprnd2.Oprnd
+a1 := arg1_msk[k] ?  HLSL.Oprnd3.Oprnd arg1_msk[k] : HLSL.Oprnd3.Oprnd
+funcs.main .= indnt d " = " a0 " < " a1 " ?  1.0 : 0." cmnt
+}
+}
+else if (line[1] = "discard_nz")
+{
+src  := this.Oprnd(line[2]).Oprnd
+msk  := this.GetMask(src)
+msk  ? msk := "." msk
+funcs.main .= indnt "if (any( "src " > float4(0.,0., 0., 0.)" msk "))`n" indnt A_tab "discard;`n"
+}
+else if (line[1] = "discard_z")
+{
+src  := this.Oprnd(line[2]).Oprnd
+msk  := this.GetMask(src)
+msk  ? msk := "." msk
+funcs.main .= indnt "if (all( "src " == float4(0.,0., 0., 0.)" msk "))`n" indnt A_tab "discard;`n"
+}
+else if (line[1] = "loop")
+{
+funcs.main .= indnt "for(;;)`n" indnt "{`n"
+indnt .= A_tab
+}
+else if (line[1] = "breakc_nz")
+{
+src  := this.Oprnd(line[2]).Oprnd
+msk  := this.GetMask(src)
+funcs.main .= indnt "if (any( "src " > float4(0.,0., 0., 0.)." msk "))`n" indnt A_tab "break;`n"
+}
+else if (line[1] = "breakc_z")
+{
+src  := this.Oprnd(line[2]).Oprnd
+msk  := this.GetMask(src)
+funcs.main .= indnt "if (all( "src " == float4(0.,0., 0., 0.)." msk "))`n" indnt A_tab "break;`n"
+}
+else if (line[1] = "else")
+{
+i := StrReplace(indnt, A_tab, "", ,1)
+funcs.main .= i "}else{`n"
+}
+else if (line[1] = "endif" || line[1] = "endloop")
+{
+indnt := StrReplace(indnt, A_tab, "", ,1)
+funcs.main .= indnt "};`n"
+}
+else if (line[1] = "udiv")
+{
+dest0 := this.Oprnd(line[2])
+dest1 := this.Oprnd(line[3])
+src0  := this.Oprnd(line[5])
+src1  := this.Oprnd(line[4])
+src0.Oprnd := "uint" src0.sz "(" src0.Oprnd ")"
+src1.Oprnd := "uint" src1.sz "(" src1.Oprnd ")"
+zero       := strsplit("uint(0.) uint2(0.,0.) uint3(0.,0.,0.) uint4(0.,0.,0.,0.))", " ")[src1.sz]
+byzero     := "uint4(0xff,0xff,0xff,0xff)"
+mask       := this.GetMask(dest0.Oprnd)
+if (dest.sz < src0.sz && dest.sz>1)
+{
+if (dest0.Oprnd != "null")
+funcs.main .= indnt "if (any(" src1.Oprnd " == " zero ")) " dest0.Oprnd "= " byzero "." mask ";`n"
+. indnt "else " indnt dest0.Oprnd " = (" src0.Oprnd "/" src1.Oprnd ")." mask ";`n"
+else
+funcs.main .= indnt "if (any(" src1.Oprnd " == " zero ")) " dest0.Oprnd "= " byzero "." mask ";`n"
+. indnt "else " indnt dest1.Oprnd " = (" src0.Oprnd "%" src1.Oprnd ")." mask ";`n"
+} else {
+if (dest0.Oprnd != "null")
+funcs.main .= indnt "if (any(" src1.Oprnd " == " zero ")) " dest0.Oprnd "= " byzero "." mask ";`n"
+. indnt "else " dest0.Oprnd " = (" src0.Oprnd "/" src1.Oprnd ");`n"
+else
+funcs.main .= indnt "if (any(" src1.Oprnd " == " zero ")) " dest0.Oprnd "= " byzero "." mask ";`n"
+. indnt "else " indnt dest1.Oprnd " = (" src0.Oprnd "%" src1.Oprnd ");`n"
+}
+}
+else if (line[1] = "imul" && line[2] = "null")
+{
+dest1 := this.Oprnd(line[3])
+src0  := this.Oprnd(line[4])
+src1  := this.Oprnd(line[5])
+mask  := this.GetMask(dest1.Oprnd)
+if (dest1.sz>1)
+funcs.main .= indnt dest1.Oprnd " = uint" dest1.sz "((" src1.Oprnd " * "src0.Oprnd ")." mask ");`n"
+else funcs.main .= indnt dest1.Oprnd " = uint" dest1.sz "(" src1.Oprnd " * " src0.Oprnd ");`n"
+}
+else if (line[1] = "ineg")
+{
+dest := this.Oprnd(line[2])
+src  := this.Oprnd(line[3])
+mask := "." this.GetMask(dest.Oprnd)
+if (strlen(mask) = 2)
+mask := ""
+funcs.main .= indnt dest.Oprnd " = (-int" src.sz "(" src.Oprnd "))" mask ";`n"
+}
+else if (line[1] = "ret")
+funcs.main .= indnt "return OutPut;`n"
+else
+{
+funcs.main .= indnt "//	Unrecognized " A_loopfield "`n"
+HLSL.Unrecognized .= A_loopfield "`n"
+}
+}
+l := "`n"
+return Glbls l Inpt "};`n" l Outpt "};`n" l funcs.main "};`n"
+}
+}

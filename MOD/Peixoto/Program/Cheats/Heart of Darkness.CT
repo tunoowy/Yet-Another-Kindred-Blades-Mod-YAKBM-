@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="42">
+  <CheatEntries>
+    <CheatEntry>
+      <ID>8</ID>
+      <Description>"F - hold to Fly, use arrows to fly up, down, left or right"</Description>
+      <Options moAlwaysHideChildren="1"/>
+      <GroupHeader>1</GroupHeader>
+      <CheatEntries>
+        <CheatEntry>
+          <ID>9</ID>
+          <Description>"Auto Position Scans"</Description>
+          <VariableType>Auto Assembler Script</VariableType>
+          <AssemblerScript>[enable]
+aobscanmodule(player_y, HODWin32.exe, 01 46 04 EB 22)
+aobscanmodule(player_y2, HODWin32.exe, 03 D0 89 56 04)  // mutiple adresses, but the on we want is the 1st
+registersymbol(player_y)
+registersymbol(player_y2)
+
+[disable]
+unregistersymbol(*)
+
+</AssemblerScript>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>2</ID>
+              <Description>"Auto Position"</Description>
+              <VariableType>Auto Assembler Script</VariableType>
+              <AssemblerScript>[enable]
+alloc(player_pos, 128)
+label(player_y_og)
+label(player_y_code)
+label(player_y_ret)
+label(player_y2_ret)
+label(player_y2_code)
+label(player_y2_og)
+label(float)
+label(float_up)
+label(float_down)
+label(float_flag)
+registersymbol(player_pos)
+registersymbol(player_y_og)
+registersymbol(float_flag)
+registersymbol(player_y2_ret)
+registersymbol(player_y2_code)
+registersymbol(player_y2_og)
+
+player_pos:
+  db 00 00 00 00
+float_flag:
+  db 00 00 00 00
+player_y_og:
+  readmem(player_y, 5)
+player_y_code:
+  mov [player_pos], esi
+  cmp [float_flag], 01
+  je float_up
+  cmp [float_flag], 02
+  je float_down
+  cmp [float_flag], 03
+  je float
+  add [esi+04],eax
+jmp player_y_ret+22
+float_up:
+  sub [esi+04],5
+jmp player_y_ret+22
+float_down:
+  add [esi+04],5
+jmp player_y_ret+22
+float:
+  jmp player_y_ret+22
+
+player_y2_code:
+  cmp esi [player_pos]
+  jne player_y2_og
+  cmp [float_flag], 00
+  je player_y2_og
+  jmp player_y2_ret
+  add edx,eax
+jmp player_y2_ret
+player_y2_og:
+  add edx,eax
+  mov [esi+04],edx
+jmp player_y2_ret
+
+player_y:
+  jmp player_y_code
+player_y_ret:
+
+player_y2:
+  add edx,eax
+  mov [esi+04],edx
+player_y2_ret:
+
+[disable]
+player_y:
+  readmem(player_y_og, 5)
+
+player_y2:
+  add edx,eax
+  mov [esi+04],edx
+
+unregistersymbol(*)
+dealloc(*)
+</AssemblerScript>
+              <CheatEntries>
+                <CheatEntry>
+                  <ID>10</ID>
+                  <Description>"Auto enable"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[enable]
+player_y2:
+  jmp player_y2_code
+
+[disable]
+player_y2:
+  add edx,eax
+  mov [esi+04],edx
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>7</ID>
+                  <Description>"Auto - fly direction"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>float_flag</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>6</ID>
+                  <Description>"Position - dyn"</Description>
+                  <VariableType>Auto Assembler Script</VariableType>
+                  <AssemblerScript>[enable]
+aobscanmodule(player_y3, HODWin32.exe, 01 C2 89 56 04)  // same
+alloc(player_y3_code, 128)
+label(player_y3_ret)
+label(player_y3_og)
+
+player_y3_code:
+  cmp esi [player_pos]
+  jne player_y3_og
+  cmp [float_flag], 00
+  je player_y3_og
+  jmp player_y3_ret
+  add edx,eax
+jmp player_y3_ret
+player_y3_og:
+  add edx,eax
+  mov [esi+04],edx
+jmp player_y3_ret
+
+player_y3:
+  jmp player_y3_code
+player_y3_ret:
+
+[disable]
+player_y3:
+  add edx,eax
+  mov [esi+04],edx
+
+
+</AssemblerScript>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>4</ID>
+                  <Description>"Y"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[player_pos]+4</Address>
+                </CheatEntry>
+                <CheatEntry>
+                  <ID>3</ID>
+                  <Description>"X"</Description>
+                  <ShowAsSigned>0</ShowAsSigned>
+                  <VariableType>4 Bytes</VariableType>
+                  <Address>[player_pos]</Address>
+                </CheatEntry>
+              </CheatEntries>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+      </CheatEntries>
+    </CheatEntry>
+  </CheatEntries>
+  <UserdefinedSymbols/>
+  <Comments>Version: retail, "1.0"
+Position: 2 bytes. Vertical position is inverted, decreases as height increases</Comments>
+</CheatTable>

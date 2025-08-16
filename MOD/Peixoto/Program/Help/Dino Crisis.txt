@@ -1,0 +1,27 @@
+::Title::Dino Crisis::
+{h1 Fixes and improvements}
+
+{f Hides the windows border on windows 8 and latter  }
+{f Fixes low rame rate}
+{i Forces the game to run - pillarboxed - at your desktop resolution. Ultra-wide 
+and 4K supported}
+{i Improves the quality of the FMVs }
+{i %Textures%} 
+{i %Xinput%} 
+
+
+{b {f} ==[FMVs improvement]==
+The FMVs are encoded in 32 bit colors, but are decoded to a 16 bit buffer even 
+if the game is running in a 32 bit mode. The program improves FMVs quality by 
+i|tricking|i directshow to decode the FMVs to a 32 bit buffer}
+
+{b {nfo} ==[...]==
+I've made this patch after a request from an user in the a|forum ^ Resident Evil
+1, 2 and 3 modding forums|a, but like the PSX version, Dino Crisis PC has no z 
+buffer or perspective correction, so it will look better on a 
+Dreamcast emulator, not to mention rumble }
+    
+
+::%ddraw%::
+ 
+::link::forum->http://re123.bplaced.net/board/viewforum.php?f=21

@@ -1,0 +1,83 @@
+; <COMPILER: v1.1.15.03>
+global G_D3DDDI := {}
+D3DDDI_Init()
+{
+fileread, code, % g_.cfg.injector_dir "\Shaders\PS_3.0.hlsl"
+G_D3DDDI.shader_code           := code
+G_D3DDDI.SetPixelShaderConst   := dllcall("GetProcAddress", ptr, g_.h_PeixotoDll, astr, "d3dddiSetpixelshaderconst")
+G_D3DDDI.SetMaxFilter          := dllcall("GetProcAddress", ptr, g_.h_PeixotoDll, astr, "d3dddiSetMaxFilter")
+f                              := g_.cfg.d3d + 0
+if (g_.cfg.TextSwap)
+f |= 0xf0
+if (g_.cfg.FLTR)
+f |= g_.cfg.FLTR << 8
+if (g_.cfg.WFG)
+f |= 0xf000
+dllcall("peixoto.dll\D3DDDI_Init", astr, g_.cfg.D3D_driver, uint, f, ptr)
+}
+class D3DDDIBlob
+{
+__new(blob)	{
+this.blob := blob
+}
+ptr() {
+return dllcall(numget(numget(this.blob+0, "ptr")+A_PtrSize*3, "ptr"), uint, this.blob)
+}
+size(){
+return dllcall(numget(numget(this.blob+0, "ptr")+A_PtrSize*4, "ptr"), uint, this.blob)
+}
+__delete(){
+dllcall(numget(numget(this.blob+0, "ptr")+A_PtrSize*2, "ptr"), uint, this.blob)
+}
+}
+D3DDDI_CreatePixelShader(code, entrypoint)
+{
+return
+}
+D3DDDI_SetLinearFilter(_enable) {
+dllcall(G_D3DDDI.SetMaxFilter, uint, _enable ? 1 : 1)
+}
+D3DDDI_CmplBCode(code, main)
+{
+pS:=0, pE:=0
+dllcall("LoadLibraryW", str, "d3dx9_43.dll")
+r := dllcall("d3dx9_43.dll\D3DXCompileShader", astr, code, UINT, strlen(code), uint, 0, uint, 0, astr, main
+, astr, "ps_3_0", uint, 0, "uint*", pS, "uint*", pE, uint, 0, uint)
+if (r = 0x8007007E)
+return "Failed to create pixel shader: please update DirectX !"
+if r
+{
+_ptr := dllcall(numget(numget(pE+0, "ptr")+A_PtrSize*3, "ptr"), uint, pE)
+size := dllcall(numget(numget(pE+0, "ptr")+A_PtrSize*4, "ptr"), uint, pE)
+rr := strget(_ptr+0, size, "CP0")
+dllcall(numget(numget(pE+0, "ptr")+A_PtrSize*2, "ptr"), uint, pE)
+return "compilation failed " rr
+}
+logerr("Bytecode compilation OK ===============================)" pS " " pE)
+return new D3DDDIBlob(pS)
+}
+D3DDDI_CmplShder(blob)
+{
+hShader := dllcall(g_.p.ddiCreatePx, ptr, blob.ptr(), uint, blob.size(), ptr)
+if (hShader = 0)
+logerr("SHADER CREATION FAILED")
+else return new D3DDDI_Pixelshader(hShader)
+}
+D3DDDI_SetShaderOverride(shader)
+{
+return dllcall(g_.p.ddiSetOvrrd, ptr, shader.hShader, ptr)
+}
+D3DDDI_RestoreShader()
+{
+return dllcall(g_.p.ddiSetOvrrd, ptr, 0, ptr)
+}
+class D3DDDI_Pixelshader
+{
+__new(hShader){
+this.hShader := hShader
+}
+__delete(){
+logerr("D3DDDI_Pixelshader::__delete() " this.hShader)
+(this.hShader) ? dllcall(g_.p.ddiDeletePx, ptr, this.hShader)
+}
+}

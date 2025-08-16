@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<style>
+    html *
+    {
+		#font-family: Helvetica;
+    }
+	.fix-master
+    {
+		#display: inline;		
+    }
+	.fix-icon
+    {
+		background-image: url("fix.svg");
+		width: 20px; 
+		height: 20px;
+		color: #f9edbe;			
+    }
+	.improve-icon
+    {
+		background-image: url("star.svg");
+		width: 20px; 
+		height: 20px;
+		color: "#f9edbe";	
+    }
+	.nfo-icon
+    {
+		background-image: url("nfo.svg");
+		width: 20px; 
+		height: 20px;
+		color: "#f9edbe";	
+    }
+	.bad-icon
+    {
+		background-image: url("bad.svg");
+		width: 20px; 
+		height: 20px;
+		color: "#f9edbe";	
+    }
+	.fix-text
+    {
+		position: relative;		
+		left: 25px;	
+		top: -20px;		
+		margin-right: 35px;
+		margin-bottom: -15px;
+    }  
+	.features
+    {
+		margin-bottom: 10px;
+		border-bottom: 1px solid #0000aa;
+    } 
+	.box
+	{
+		background-color: #f9edbe;
+		border: 1px solid #0000aa;
+		margin-top: 10px;	
+		padding-top: 5px;
+		padding-left: 5px;
+		padding-right: 5px;
+		color: #0000aa;
+		font-size : 18px;
+	}
+	.center
+	{
+		display: inline;
+		background-color: #f9edbe;
+		position: relative;		
+		left: 25px;
+		font-size: 20px;
+		color: #0000aa;
+	}
+	
+   	
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<body>
+		<script src="qwebchannel.js"></script>
+			<script>
+				function WindowResized(e)
+				{
+					QWebChannelCallback.Resized(window.innerWidth, window.innerHeight);
+				};
+
+				var QWebChannelCallback;
+				function InitWebChannel(channel)
+				{
+					QWebChannelCallback = channel.objects.QWebChannelCallback;
+				};
+				new QWebChannel(qt.webChannelTransport, InitWebChannel);
+				//document.body.onresize = function(e){WindowResized()};
+				document.body.onkeypress = function(e){QWebChannelCallback.Keydown("", e.key);}; 
+
+				function InsertElementOnBody(tag, id)
+				{
+					var element      = document.createElement(tag);
+					element.id       = id;
+					element.onmouseover = function(e){QWebChannelCallback.Over(element.id); e.stopPropagation();};
+					element.onmouseout  = function(e){QWebChannelCallback.Out(element.id); e.stopPropagation();};
+					element.onclick  = function(e){QWebChannelCallback.Clicked(element.id); e.stopPropagation();};
+					element.onkeypress   = function(e){QWebChannelCallback.Keydown(element.id, e.key);};
+					document.body.appendChild(element);
+				};
+				function InsertElementOnElement(tag, id, parent_id)
+				{
+					var element         = document.createElement(tag);
+					element.id          = id;
+					element.onmouseover = function(e){QWebChannelCallback.Over(element.id); e.stopPropagation();};
+					element.onmouseout  = function(e){QWebChannelCallback.Out(element.id); e.stopPropagation();};
+					element.onclick     = function(e){QWebChannelCallback.Clicked(element.id); e.stopPropagation();};
+					element.onkeypress  = function(e){QWebChannelCallback.Keydown(element.id, e.key);};
+                    element.onpaste     = function(e){QWebChannelCallback.Keydown(element.id, event.clipboardData.getData('text/plain'));};
+					document.getElementById(parent_id).appendChild(element);
+				};  
+				function SliderValueChanged()
+				{
+					QWebChannelCallback.SliderValueChanged(document.activeElement.id, document.activeElement.value);
+				};	
+				function EnumChildren(parent_id)
+				{
+					var children = document.getElementById(parent_id).children;
+					for (var i = 0; i < children.length; i++) 
+					{
+						QWebChannelCallback.EnumChildrenCallback(parent_id, children[i].id);
+					}
+				}; 
+                function RemoveElement(id)
+                {
+                    var element = document.getElementById(id);
+                    if (element == null)
+                        return;
+                    element.parentNode.removeChild(element);    
+                }; 
+                
+                                
+                function dragElement(id) 
+                {
+                    var pos1          = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+                    elmnt             = document.getElementById(id)
+                    elmnt.onmousedown = dragMouseDown;
+                                  
+                    function dragMouseDown(e) 
+                    {
+                        e = e || window.event;
+                        e.preventDefault();
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        document.onmouseup   = closeDragElement;                         
+                        document.onmousemove = elementDrag;
+                    }
+              
+                    function elementDrag(e) 
+                    {
+                        e = e || window.event;
+                        e.preventDefault();
+                        // calculate the new cursor position:
+                        pos1 = pos3 - e.clientX;
+                        pos2 = pos4 - e.clientY;
+                        pos3 = e.clientX;
+                        pos4 = e.clientY;
+                        // set the element's new position:
+                        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+                    }
+              
+                    function closeDragElement() 
+                    {
+                        // stop moving when mouse button is released:
+                        document.onmouseup = null;
+                        document.onmousemove = null;
+                    }
+              }
+			</script>  	
+	</body>	 
+</html>

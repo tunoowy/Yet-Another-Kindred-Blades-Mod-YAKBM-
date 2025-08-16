@@ -1,0 +1,55 @@
+Title::American McGee's Alice::
+{h1 Fixes and improvements}
+{i Persistent FOV correction in widescreen. The FOV won't reset all the time as it 
+happens if it is changed via console or config files}
+{i Automatic resolution setup for the retail version} 
+{i  %Textures% }
+
+{b {nfo}
+==[If you have the original CD version]== Make sure it is configured to run in 
+fullscreen before you start it with the program. That version will be 
+forced to run at your desktop resolution with no extra setup required}
+
+::Section::Settings::
+::RADIOHEAD::svs::File redirection::::
+::parent::svs_details::
+::RADIO::svs=0::svs::Disabled::::
+::RADIO::svs=links::svs::Enabled::The game keeps it's saves at|n i<%__path__%saves>i |n This options is supported
+for several games and alows you to backup |n and restore saves for many games at once by copying one folder only::
+::parent::doc_settings_contents::
+::BOOL::custom_fov::Custom fov::If this is not checked, the fov is automatically calculated||n:: 
+::FLOAT::f::Custom fov value::90-170-1::Only applies if the option above is enabled
+::BOOL::DSR::Dynamic super resolution::The game will run at the highest resolution available instead of the desktop's - Retail version only||n:: 
+::section::endofsettings::
+::BOOL::Textswap.e::Texture swapping::Click a|tswaptuto ^ here|a for the details:: 
+
+::parent::Textswap.e_details::
+::%_Textswap_%:: 
+
+::parent::Textswap.e_details::
+::RADIOHEAD::Textswap.path::Path::
+::parent::Textswap.path_details::
+::RADIO::Textswap.path=Textures/VOKSI::Textswap.path::a|tswap_link=VOKSI ^ %__path__%Textures\VOKSI |a::::
+::RADIO::Textswap.path=Textures/CPY::Textswap.path::a|tswap_link=CPY ^ %__path__%Textures\CPY |a::
+::RADIO::Textswap.path=Textures/CODEX::Textswap.path::a|tswap_link=CODEX ^ %__path__%Textures\CODEX |a:: 
+::RADIO::Textswap.path=Textures/SKIDROW::Textswap.path::a|tswap_link=SKIDROW ^ %__path__%Textures\SKIDROW |a::::
+::RADIO::Textswap.path=Textures/RELOADED::Textswap.path::a|tswap_link=RELOADED ^ %__path__%Textures\RELOADED |a::
+::RADIO::Textswap.path=Textures/EMPRESS::Textswap.path::a|tswap_link=EMPRESS ^ %__path__%Textures\EMPRESS |a:: 
+::parent::Textswap.e_details::
+::BOOL::Textswap.a::Auto dump textures - WIP::Dumps textures while you play.
+The auto dump option is automatically disabled every time you load the game 
+page||N:: 
+::%_Textswap_Compiler%::
+
+::parent::doc_settings_contents::
+::TEXT::b<DirectSound>b::
+::BOOL::Dsnd.e::DirectSound Hooks::Restores EAX - 1 and 2 - reverb and 
+positional sound. This is a work in progress feature but on the next update -
+0.10.11, eax 3 and 4 will be added and reverb will be improved. Positional sound 
+however will remain very basic for the moment, distance attenuation, sound cones 
+and a simple left and right panning|n::
+wip<::parent::Dsnd.e_details::>wip                                             
+wip<::BOOL::Dsnd.STTR::Sttuter fix::>wip
+wip<::BOOL::Dsnd.CRSR::Cursor fix::>wip
+wip<::BOOL::Dsnd.S3D::3D::>wip
+

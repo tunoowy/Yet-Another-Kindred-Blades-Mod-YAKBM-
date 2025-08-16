@@ -1,0 +1,149 @@
+1 Alice
+2 Alice - Remaster
+3 Alien Earth
+4 Aliens vs Predator 2
+5 Aliens vs Predator classic
+6 Alone in the Dark - The New Nightmare
+7 Anachronox
+8 Army men RTS - Demo
+9 Bermuda Syndrome - SDL
+10 Blade of darkness
+11 Blade of Darkness Classic
+12 Bladerunner
+13 Blood 2
+14 Clive Barker's Undying
+15 Control
+16 Dark Earth
+17 Dark vengeance
+18 Darkstone
+19 Death's Door
+20 DeusEx
+21 Diablo
+22 Diablo 2
+23 Die by the sword
+24 Dino Crisis
+25 Drakan
+26 Ecstatica
+27 Ecstatica 2
+28 Enclave
+29 F.E.A.R
+30 Fallout
+31 Fallout 2
+32 Forsaken
+33 Gears of War
+34 Grim Fandango
+35 Guacamelee 2
+36 Guacamelee!
+37 Half Life
+38 Half Life - Blue Shift
+39 Half Life - Opposing Force
+40 Half Life 2
+41 Half Life 2 - Episode One
+42 Half Life 2 - Episode Two
+43 Halo
+44 Heart of Darkness
+45 HItman - Codename 47
+46 Hyperblade
+47 Im Alive
+48 Iron storm
+49 Jade empire
+50 Lara Croft and the Guardian of Light
+51 Legacy of Kain - Blood Omen
+52 Legacy of Kain - Blood Omen 2
+53 Legacy of Kain - Defiance
+54 Legacy of Kain - Soul Reaver
+55 Legacy of Kain - Soul Reaver 2
+56 Little Big Adventure
+57 Little Big Adventure 2
+58 MageSlayer
+59 Martian Gothic
+60 Max Payne
+61 Max Payne 2
+62 Messiah
+63 Never Alone
+64 Nocturne
+65 Nox
+66 Oddworld - Abe's Exoddus
+67 Oddworld - Abe's Exodus
+68 Oddworld - Abe's Oddysse
+69 Oddworld - Abe's Odyssey
+70 Oddworld - Munch's Oddysee HD
+71 Oddworld - Strangers Wrath HD
+72 onEscapee
+73 Oni
+74 Onimusha
+75 onScapee
+76 Ori and the blind forest
+77 Ori and the will of the wisps
+78 Outlaws
+79 Outwars
+80 Planescape torment
+81 Portal
+82 Portal 2
+83 Prince of Persia - Forgotten Sands
+84 Prince of Persia - SDLPoP
+85 Prince of Persia - SOT
+86 Prince of Persia - T2T
+87 Prince of Persia - WW
+88 Prince of Persia 3D
+89 Project Eden
+90 Rain World
+91 Rainworld
+92 Resident Evil
+93 Resident Evil 2 - Claire
+94 Resident Evil 2 - Leon
+95 Resident Evil 2 - Sourcenext
+96 Resident Evil 2 Remake
+97 Return to Castle Wolfenstein
+98 Revenant - Hardware
+99 Revenant - Software
+100 Rime
+101 Rune
+102 Sanitarium
+103 Sanity - Aiken's Artifact
+104 Second Sight
+105 Septerra Core
+106 Shadow Man
+107 Shogo
+108 Signalis
+109 Silver
+110 Slave Zero
+111 Soulbringer - DX6
+112 Sphinx and the Cursed Mummy
+113 Star Trek - Elite Force 2
+114 Star Trek Deep Space Nine - The Fallen
+115 Star Trek Klingon Honour Guard
+116 Star Trek Voyager - Elite Force
+117 Star Wars - Jedi Knight
+118 Star Wars - Jedi Knight - MotS
+119 Star Wars - Shadows of the empire
+120 Star Wars - SOTE
+121 Star Wars Ep. I - Racer
+122 Star Wars Ep. I - The Phantom Menace
+123 Sudeki 
+124 System Shock 2
+125 Take no prisoners
+126 The Longest Journey
+127 The Longest Journey - GOG
+128 The Talos Principle
+129 The Void
+130 The Wheel of Time
+131 Tomb Raider
+132 Tomb Raider - Anniversary
+133 Tomb Raider - Gold
+134 Tomb Raider - Legend
+135 Tomb Raider 2
+136 Tomb Raider 2 - Arsunt
+137 Tomb Raider 2 - Gold
+138 Tomb Raider 3
+139 Tomb Raider 3 - Gold
+140 Tomb Raider 4
+141 Tomb Raider 5
+142 Turok
+143 Turok 2
+144 Unravel
+145 Unravel Two
+146 Unreal Gold
+147 Vampire The Masquerade - Redemption
+148 Wolfenstein - 2009
+149 Zanzarah

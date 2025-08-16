@@ -1,0 +1,97 @@
+::File SystemTab:: 
+
+::RADIOHEAD::svs::File redirection::::
+::parent::svs_buttons::
+::TEXT::<div style='margin-left:15px;'>When this is enabled, the folder:
+i|b<%__path__%Saves>b|i
+is created, and any b| NEW|b files the game creates, are sent to or created 
+there. With this, you can backup and restore saves for several games at once by
+copying a singe folder: b<%FOLDERID_Documents%\Games>b|n</div>  ::
+::RADIO::svs=false::svs::Disabled::
+::RADIO::svs=links::svs::System linkswip< - legacy>wip::For older games that 
+keep their saves on their own directories wip<Although marked as legacy, this>wip
+wip<is still the way to go for most games in this category|n>wip:: 
+wip<::RADIO::svs=links_cpp::svs::System links::This will handle some games, like unreal>wip
+wip<engine 1 and 2 games, on which the main executable and the saves are kept in>wip 
+wip<different sub folders. e.g: on ureal games you'll have|n>wip
+Game Folder:|n
+--System (sub folder): Game.exe, other files.. |n
+--Save (sub folder): save files|n
+This option is intended to replace theb one above eventually, but right now 
+compatibility is far lower::
+::RADIO::svs=fldrs::svs::Special folders::For newer games that keep their saves
+on the folders:<br>
+i|%FOLDERID_LocalAppData%i|<br>
+i|%FOLDERID_RoamingAppData%i|<br>
+i|%FOLDERID_Documents%i|<br>
+i|%FOLDERID_ProgramData%i|<br>
+::RADIO::svs=env::svs::Special folders - alt method:: 
+Try this if the option above doesn't work, but the game saves on one of those folders::
+::RADIO::svs=xlive::svs::XLive:: For [xlive Games for Windows - Live] games:: 
+::parent::svs=env_details::
+::hidden::svs_env_details::test::This handles games that retrieve the special 
+folders path from enviroment variables:: 
+::parent::svs_buttons::
+::TEXT::
+{b 
+    b|Handling unreal engine 1 and 2 games|b |n
+    This is the additional setup needed to use the system links option with 
+    unreal engine 1 and 2 games. This setup must only de done  once because  the
+    files you will be instructed to copy and modify can be backed up and 
+    restored  together with the saves|n
+    <ul>
+    <li>Start the game using peixoto's path, so the directory: 
+    i|%path%\cfg|i will be created, if it doesn't already exists</li>
+    <li> Navigate to the game folder and find the game's configuration file on the 
+    'system' subfolder. This file is named DeusEx.ini for DeusEx, Unreal.ini for
+     Unreal and so on </li>
+    <li> Now copy that file to the i|%path%\cfg|i folder </li>
+    <li> On unreal and Rune, it is also necessary to copy the user.ini file over </li>
+    <li> Now open the 1st ini file you copied and change the line:
+    b|SavePath=..\Saves|b to
+    b|SavePath=..\System\Saves|b </li>    
+    <ul>
+} ::
+::parent::svs=links_details::
+wip<::__BOOL::lgclnk::Legacy method::The new method still have some incompatibilities
+and crashes some games::>wip unused, even on wip
+
+  
+::parent::File System_div:: 
+::__mods__::
+
+::CPUTab::
+::BOOL::singlecore::Single core affinity::
+This will set the process affinity only to the logical CPU core of the highest 
+index. Even if the game doesn't need this, the autohotkey interpreter sometimes does.
+If your game sends you a series of message boxes complaining that it is out of
+memory, enable this    
+
+::BOOL::HRT::High resolution timers::
+This can fix low or choppy frame rate on some games
+::parent::HRT_details::
+::HIDDEN::HRT_datailed::Details::Adapted from a|DDcompat ^ here|a, but with a 
+safer approach that doesn't affect the entire system::
+
+::parent::CPU_div::
+::BOOL::QPCFix::QueryPerformanceCounter Fix::
+Also fixes low or choppy frame rate on some games. If a game starts to show 
+issues only after the computer has been running for a while, it probably need 
+this. For some games it might be necessary to combine this feature and the one
+above::
+::parent::QPCFix_details::
+::HIDDEN::QPCFix_datailed::Details::This hooks the QueryPerformanceCounter 
+function and changes its behavior so it will report not the number of counts since 
+windows had started, but since the current process was started::
+
+::parent::CPU_div::
+::BOOL::rnm::Disable shims::This clears compatibility flags set on the HKCM
+registry secion that override flags set by the user and render the two options 
+bellow inefective. GOG installers sometimes set these flags and this breaks their 
+CD audio emulation, and therefore the music, in some games
+
+::parent::CPU_div::
+::section::EndOfSettings::
+
+::link::DDcompat->https://github.com/narzoul/DDrawCompat 
+::link::xlive->https://en.wikipedia.org/wiki/Games_for_Windows_%E2%80%93_Live::
