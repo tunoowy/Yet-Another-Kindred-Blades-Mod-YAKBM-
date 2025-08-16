@@ -24,7 +24,4 @@ Now you'll have a desktop icon you can use to launch the game easily.
 Go to <path-to-game>\Video.
 Delete or rename every file (not the folders though!) here, except for LOADLOP0.BIK and CREDITS.BIK.
 (Taken from https://www.pcgamingwiki.com/wiki/Prince_of_Persia:_Warrior_Within)
-- Though Peixoto's Injector may fix screen issues, you might want to check out The Unofficial Patch by DawidFreeman too, which you can find here:
-https://www.nexusmods.com/princeofpersiathetwothrones/mods/10
-It fixes compatibility, widescreen, resolution & other issues with a simple setup.
 - If you have a Steam copy of the game and it fails to launch, try copying Steam.dll and/or steam.exe into the game's installation folder.
