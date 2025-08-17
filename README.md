@@ -73,4 +73,4 @@ making and uploading their KB mod with the included patch.dll + other assets.
 Without their mods, I wouldn't have been able to create mine.
 Kudos also to u/International_Pop914 for his advices and provided reference materials.
 -------------------------------------------------------------------------------------------------------
-[DOWNLOAD MIRROR](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
+[MIRROR DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
