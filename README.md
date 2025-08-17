@@ -65,7 +65,7 @@ This patch includes additional features for the game (from Geva):
 -    Free look while executing QTE
 
 ## CREDITS:
-lajon
+Author: lajon
 
 Kudos to borisskyman for the 20th Anniversary Mod, creators from Kindred Blades VK group and chessbase50 for 
 making and uploading their KB mod with the included patch.dll + other assets.
