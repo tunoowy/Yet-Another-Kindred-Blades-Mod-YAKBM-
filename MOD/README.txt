@@ -1,7 +1,7 @@
 INSTALLATION:
 0. Download the mod & Unzip it to a folder of your choosing.
 1. Copy paste "pop3.bf" of the downloaded mod folder in your "Prince of Persia The Two Thrones" folder. If the message pops up to replace it in your game's folder, accept and click on yes/replace.
-You can download and use this file from here: https://www.nexusmods.com/princeofpersiathetwothrones/mods/12
+You can download and use this file from here: https://www.nexusmods.com/princeofpersiathetwothrones/mods/12 or here: https://drive.google.com/file/d/1TI703yqrVbC0LqCt108NwKGbCLZK2kG_/view?usp=sharing
 2. Go to the Peixoto folder in the pack & Open Peixoto.bat
 3. Find 'Prince of Persia - T2T' in the list on the left & click on it once.
 (The Injector has some viewability isues on my end, so if the list disappears, try resizing the window until you see what you need.)
