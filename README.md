@@ -9,6 +9,8 @@ the initial trailers and screenshots that were shared before the game's release.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
+-    Added Blood
+-    New Blue & Red Menu
 -    Reworked HUD similar to the one from WW
 -    Dark version of default HUD
 -    New customizable 1st outfit (the outfit that the Prince wears before getting the second dagger)
