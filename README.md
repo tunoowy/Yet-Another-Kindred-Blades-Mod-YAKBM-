@@ -44,7 +44,7 @@ The game looks more "raw" this way.
 The default outfits used by files from Replacements directory: cape, no scarf, WW trousers, WW tattoo, WW belt, WW shoes,
 WW armor
 
-## BONUS:
+## BONUS 1:
 1. ReShade: paste the included files from the Optional Files/ReShade directory
 into the game's main directory and overwrite it.
 
