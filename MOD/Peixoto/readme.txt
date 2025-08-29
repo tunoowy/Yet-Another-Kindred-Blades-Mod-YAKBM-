@@ -1,5 +1,4 @@
 Peixoto's patch (https://www.patreon.com/user?u=44312848&fan_landing=true)
-quick readme
 
 This program contains a collection of patches for old windows games, increasing 
 their compatibility with newer windows versions, fixing bugs, glitches, poor 
