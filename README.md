@@ -58,11 +58,11 @@ What does it offer?
 This patch includes additional features for the game (from Geva):
 
 ### CONTROL:
--    Change of logic --------------------- 4 activation, change by pressing TAB (there are bugs)
--    Infinite enemies -------------------- 5
--    Variable speedkill ------------------ 1, 2, 3
--    Enable/disable post-processing ------ T (removes blur; shadows disappear)
--    Enable/disable speedkill camera ----- V (works at long distance)
+-    Change of logic -- 4 activation, change by pressing TAB (there are bugs)
+-    Infinite enemies -- 5
+-    Variable speedkill -- 1, 2, 3
+-    Enable/disable post-processing -- T (removes blur; shadows disappear)
+-    Enable/disable speedkill camera -- V (works at long distance)
 
 ### CAPABILITIES:
 -    The Dark Prince does not lose HP
