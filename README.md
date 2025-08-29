@@ -72,10 +72,11 @@ This patch includes additional features for the game (from Geva):
 ## CREDITS:
 Author: lajon
 
-Kudos to borisskyman for the 20th Anniversary Mod, creators from Kindred Blades VK group and chessbase50 for 
-making and uploading their KB mod with the included patch.dll + other assets.
-Without their mods, I wouldn't have been able to create mine.
-Kudos also to u/International_Pop914 for his advices and provided reference materials.
+Kudos to:\
+-- borisskyman for the 20th Anniversary Mod\
+-- creators from Kindred Blades VK group and chessbase50 for their KB mod with the included patch.dll + other assets\
+-- DawidFreeman for the Unofficial Patch\
+-- u/International_Pop914, aka Strik3Papi for his advices and provided reference materials\
 
 -------------------------------------------------------------------------------------------------------
 [MIRROR DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
