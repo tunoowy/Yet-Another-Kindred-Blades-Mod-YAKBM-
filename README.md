@@ -20,8 +20,8 @@ the initial trailers and screenshots that were shared before the game's release.
 -    Scar on face from WW
 -    Hair from WW (just the texture; the length is not changed)
 -    Tattoo on the left arm from WW
--    Glowing WW tattoo (mostly)
--    Recolored daggers
+-    Glowing WW Tattoo (mostly)
+-    Recolored Daggers
 -    New Dagger
 -    New Intro Videos
 -    New KB Tattoo
