@@ -37,11 +37,12 @@ The Dark Prince remains the same, his look isn't changed by this mod!
 
 ## INSTALLATION:
 1. Follow the steps included in the MOD/README.txt file.
-2. Paste the Video folder into the game's main directory. For the correct video scaling you might need to drag and drop 
+2. Paste the Video folder into the game's main directory and overwrite the files. For the correct video scaling you might need to drag and drop 
 the patch files into the game's main directory. See BONUS 2 below.
-3. (Optional) Customize the outfits however you want using the contents from the remaining directories (Optional Files/Textures).
+3. Paste the Sound folder into the game's main directory and overwrite the files.
+4. (Optional) Customize the outfits however you want using the contents from the remaining directories (Optional Files/Textures).
 The process is simple, just paste and overwrite the files in Replacements directory.
-4. (Optional) Set EnableAE to 0 in Hardware.ini file inside the game's main directory to remove special effects on screen. 
+5. (Optional) Set EnableAE to 0 in Hardware.ini file inside the game's main directory to remove special effects on screen. 
 The game looks more "raw" this way.
 
 The default outfits used by files from Replacements directory: cape, no scarf, WW trousers, WW tattoo, WW belt, WW shoes,
