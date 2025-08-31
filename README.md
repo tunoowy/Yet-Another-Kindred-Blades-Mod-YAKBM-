@@ -9,8 +9,11 @@ the initial trailers and screenshots that were shared before the game's release.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
--    Added Two Blood Variants
--    New Blue & Red Menu
+-    Added prince's grunts from WW
+-    Restored prince's voice lines in the save and pause menus
+-    Added menu sounds from WW and new OST in the main menu
+-    Added two blood variants
+-    New blue & red menu
 -    Reworked HUD similar to the one from WW
 -    Dark version of the default HUD
 -    New customizable 1st outfit (the outfit that the Prince wears before getting the second dagger)
@@ -20,15 +23,15 @@ the initial trailers and screenshots that were shared before the game's release.
 -    Scar on face from WW
 -    Hair from WW (just the texture; the length is not changed)
 -    Tattoo on the left arm from WW
--    Glowing WW Tattoo (mostly)
--    Recolored Daggers
--    New Dagger
--    New Intro Videos
--    New KB Tattoo
--    Glowing KB Tattoo
--    Darker Skyboxes
--    Modified Enemies (Armor, Skin Color)
--    New Weapons (Dagger Replacements)
+-    Glowing WW tattoo (mostly)
+-    Recolored daggers
+-    New dagger
+-    New intro videos
+-    New KB tattoo
+-    Glowing KB tattoo
+-    Darker skyboxes
+-    Modified enemies (armor, skin color)
+-    New weapons (dagger replacements)
 
 The outfits are consistent, meaning that after getting the 2nd and 3rd outfits, it still makes sense how they look.
 They are not completely different outfits that came out of nowhere.
