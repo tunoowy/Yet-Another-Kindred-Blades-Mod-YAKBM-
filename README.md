@@ -59,7 +59,7 @@ into the game's main directory and overwrite it.
 1. Paste the included patch files from the Optional Files/Patch directory into the game's main directory and overwrite it.
 
 What does it offer?
-This patch includes additional features for the game (from Geva):
+Fixed camera, increased fov and additional features for the game (from Geva):
 
 ### CONTROL:
 -    Change of logic -- 4 activation, change by pressing TAB (there are bugs)
