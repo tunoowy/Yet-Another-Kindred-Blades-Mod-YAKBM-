@@ -60,6 +60,7 @@ into the game's main directory and overwrite it.
 
 What does it offer?
 - Fixed camera 
+- Gore (removed censorship)
 - Increased fov 
 - Additional features (from Geva, described below)
 
