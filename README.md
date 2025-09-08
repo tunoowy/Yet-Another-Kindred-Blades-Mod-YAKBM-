@@ -53,10 +53,10 @@ WW armor
 
 ## BONUS 1:
 1. ReShade: paste the included files from the Optional Files/ReShade directory
-into the game's main directory and overwrite it.
+into the game's main directory and overwrite them.
 
 ## BONUS 2:
-1. Paste the included patch files from the Optional Files/Patch directory into the game's main directory and overwrite it.
+1. Paste the included patch files from the Optional Files/Patch directory into the game's main directory and overwrite them.
 
 What does it offer?
 - Fixed camera 
