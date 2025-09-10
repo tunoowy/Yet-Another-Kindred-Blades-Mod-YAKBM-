@@ -83,7 +83,7 @@ Kudos to:\
 -- borisskyman for the 20th Anniversary Mod\
 -- creators from Kindred Blades VK group and chessbase50 for their KB mod with the included patch.dll + other assets\
 -- DawidFreeman for the Unofficial Patch\
--- u/International_Pop914, aka Strik3Papi for his advices and provided reference materials\
+-- u/International_Pop914, aka Strik3Papi for his advices and provided reference materials
 
 -------------------------------------------------------------------------------------------------------
 [MIRROR DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
