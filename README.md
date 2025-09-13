@@ -9,9 +9,7 @@ the initial trailers and screenshots that were shared before the game's release.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
--    Added prince's grunts from WW
--    Restored prince's voice lines in the save and pause menus
--    Added menu sounds from WW and new OST in the main menu
+-    Audio - restored voice lines (in the save and pause menus), WW menu sounds, main menu theme, added Military Aggression OST, Dark Prince transformation, WW Prince's grunts (mostly)
 -    Added two blood variants
 -    New blue & red menu
 -    Reworked HUD similar to the one from WW
@@ -36,7 +34,6 @@ the initial trailers and screenshots that were shared before the game's release.
 The outfits are consistent, meaning that after getting the 2nd and 3rd outfits, it still makes sense how they look.
 They are not completely different outfits that came out of nowhere.
 
-The Dark Prince remains the same, his look isn't changed by this mod!
 
 ## INSTALLATION:
 1. Follow the steps included in the MOD/README.txt file.
