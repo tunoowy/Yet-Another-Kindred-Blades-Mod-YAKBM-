@@ -9,7 +9,7 @@ the initial trailers and screenshots that were shared before the game's release.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
--    Audio - restored voice lines (in the save and pause menus), WW menu sounds, main menu theme, added Military Aggression OST, Dark Prince transformation, WW Prince's grunts (mostly)
+-    Audio - restored voice lines (in the save and pause menus), WW menu sounds, main menu theme, added Military Aggression OST, Dark Prince transformation, Dark Prince's grunts, WW Prince's grunts (mostly)
 -    Added two blood variants
 -    New blue & red menu
 -    Reworked HUD similar to the one from WW
