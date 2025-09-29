@@ -9,7 +9,6 @@ the initial trailers and screenshots that were shared before the game's release.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
--    Audio - restored voice lines (in the save and pause menus), WW menu sounds, main menu theme, added Military Aggression OST, Dark Prince transformation, some Dark Prince's grunts, WW Prince's grunts (mostly), some voice lines from WW
 -    Added two blood variants
 -    New blue & red menu
 -    Reworked HUD similar to the one from WW
@@ -39,10 +38,9 @@ They are not completely different outfits that came out of nowhere.
 1. Follow the steps included in the MOD/README.txt file.
 2. Paste the Video folder into the game's main directory and overwrite the files. For the correct video scaling you might need to drag and drop 
 the patch files into the game's main directory. See BONUS 2 below.
-3. Download the sound files from [HERE](https://drive.google.com/file/d/1e5mX61RKxt_wQWxC63eg3voI12WHoNEa/view?usp=sharing), paste the Sound folder into the game's main directory and overwrite the files.
-4. (Optional) Customize the outfits however you want using the contents from the remaining directories (Optional Files/Textures).
+3. (Optional) Customize the outfits however you want using the contents from the remaining directories (Optional Files/Textures).
 The process is simple, just paste and overwrite the files in Replacements directory.
-5. (Optional) Set EnableAE to 0 in Hardware.ini file inside the game's main directory to remove special effects on screen. 
+4. (Optional) Set EnableAE to 0 in Hardware.ini file inside the game's main directory to remove special effects on screen. 
 The game looks more "raw" this way.
 
 The default outfits used by files from Replacements directory: cape, no scarf, WW trousers, WW tattoo, WW belt, WW shoes,
