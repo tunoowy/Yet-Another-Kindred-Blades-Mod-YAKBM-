@@ -43,7 +43,7 @@ The process is simple, just paste and overwrite the files in Replacements direct
 4. (Optional) Set EnableAE to 0 in Hardware.ini file inside the game's main directory to remove special effects on screen. 
 The game looks more "raw" this way.
 
-The default outfits used by files from Replacements directory: cape, no scarf, WW trousers, WW tattoo, WW belt, WW shoes,
+The default outfits from Replacements directory: cape, no scarf (3rd outfit), WW trousers, WW tattoo, WW belt, WW shoes,
 WW armor
 
 ## BONUS 1:
