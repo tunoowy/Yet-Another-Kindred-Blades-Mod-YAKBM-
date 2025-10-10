@@ -72,7 +72,7 @@ What does it offer?
 -    Free look while executing QTE
 
 ## BONUS 3 - Yet Another Kindred Blades Mod Expansion Pack (YAKBMEP):
-If you want more different skins and their variantions, don't forget to check out this mod!
+If you want more different skins and their variantions, don't forget to check out this mod!\
 [YAKBMEP DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/16)
 
 ## CREDITS:
