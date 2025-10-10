@@ -46,11 +46,11 @@ The game looks more "raw" this way.
 The default outfits from Replacements directory: cape, no scarf (3rd outfit), WW trousers, WW tattoo, WW belt, WW shoes,
 WW armor
 
-## BONUS 1:
+## BONUS 1 - ReShade:
 1. ReShade: paste the included files from the Optional Files/ReShade directory
 into the game's main directory and overwrite them.
 
-## BONUS 2:
+## BONUS 2 - Fixes and Features:
 1. Paste the included patch files from the Optional Files/Patch directory into the game's main directory and overwrite them.
 
 What does it offer?
@@ -70,6 +70,10 @@ What does it offer?
 -    The Dark Prince does not lose HP
 -    Sandy halo
 -    Free look while executing QTE
+
+## BONUS 3 - Yet Another Kindred Blades Mod Expansion Pack (YAKBMEP):
+If you want more different skins and their variantions, don't forget to check out this mod!
+[YAKBMEP DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/16)
 
 ## CREDITS:
 Author: lajon
