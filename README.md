@@ -3,7 +3,7 @@
 ![Title Screen](https://i.imgur.com/shTQGCS.jpeg)
 
 ## DESCRIPTION:
-Yet Another Kindred Blades Mod (YAKBM) is another mod that tries to resemble some skins from PoP T2T before it was released.
+Yet Another Kindred Blades Mod (YAKBM) is another mod that tries to resemble textures and skins from PoP T2T before it was released.
 This mod offers outfit customization. It's made in a way that the Prince's look is somewhat lore-accurate with 
 the initial trailers and screenshots that were shared before the game's release.
 
@@ -44,11 +44,11 @@ The process is simple, just paste and overwrite the files in Replacements direct
 The game looks more "raw" this way.
 
 The default outfits from Replacements directory: cape, no scarf (3rd outfit), WW trousers, WW tattoo, WW belt, WW shoes,
-WW armor
+WW armor.
 
 ## BONUS 1 - ReShade:
-1. ReShade: paste the included files from the Optional Files/ReShade directory
-into the game's main directory and overwrite them.
+1. Paste the included files from the Optional Files/ReShade directory
+into the game's main directory and overwrite them. Use only one preset at the time.
 
 ## BONUS 2 - Fixes and Features:
 1. Paste the included patch files from the Optional Files/Patch directory into the game's main directory and overwrite them.
