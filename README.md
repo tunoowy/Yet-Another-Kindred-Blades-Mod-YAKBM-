@@ -1,5 +1,9 @@
 # Yet Another Kindred Blades Mod (YAKBM)
 
+<p align="left">
+    <img src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total">
+</p>
+
 ![Title Screen](https://i.imgur.com/shTQGCS.jpeg)
 
 ## DESCRIPTION:
