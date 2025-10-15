@@ -1,7 +1,11 @@
 # Yet Another Kindred Blades Mod (YAKBM)
 
-<p align="left">
-    <img src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total">
+<p align="center">
+    <img src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=rgb(51, 51, 255)">
+    <img src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=rgb(204, 0, 204)">
+    <img src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main">
+    <img src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-">
+    <img src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
 </p>
 
 ![Title Screen](https://i.imgur.com/shTQGCS.jpeg)
