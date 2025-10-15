@@ -1,18 +1,11 @@
 # Yet Another Kindred Blades Mod (YAKBM)
 
-<style>
-    .badge {
-        margin-right: 1%;
-    }
-</style>
-
-
 <p align="center">
-    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img class="badge" src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue">
-    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img class="badge" src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple">
-    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img class="badge" src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main">
-    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img class="badge" src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-">
-    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img class="badge" src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
+    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img style="margin-right: 1%;" src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue">
+    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img style="margin-right: 1%;" src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple">
+    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img style="margin-right: 1%;" src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main">
+    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img style="margin-right: 1%;" src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-">
+    <img width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img style="margin-right: 1%;" src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
 </p>
 
 ![Title Screen](https://i.imgur.com/shTQGCS.jpeg)
