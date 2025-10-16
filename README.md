@@ -1,11 +1,11 @@
 # Yet Another Kindred Blades Mod (YAKBM)
 
 <p align="center">
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Downloads Badge" src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Commits Badge" src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Last Commit Badge" src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Repo Size Badge" src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Created At Badge" src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
+    <img alt="Prince Icon" width=35px height=35px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Downloads Badge" height=35px src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=35px height=35px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Commits Badge" height=35px src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=35px height=35px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Last Commit Badge" height=35px src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=35px height=35px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Repo Size Badge" height=35px src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=35px height=35px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Created At Badge" height=35px src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
 </p>
 
 ![Title Screen](https://i.imgur.com/shTQGCS.jpeg)
