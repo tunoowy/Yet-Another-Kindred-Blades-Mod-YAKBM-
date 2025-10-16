@@ -88,7 +88,7 @@ Author: lajon
 
 Kudos to:\
 -- borisskyman for the 20th Anniversary Mod\
--- creators from Kindred Blades VK group and chessbase50 for some textures and patch.dll file\
+-- creators from Kindred Blades VK group and chessbase50 for some assets from KB mod\
 -- DawidFreeman for the Unofficial Patch\
 -- u/International_Pop914, aka Strik3Papi for advices and provided reference materials
 
