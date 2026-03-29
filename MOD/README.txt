@@ -25,3 +25,16 @@ Now you'll have a desktop icon you can use to launch the game easily.
 Go to <path-to-game>\Video.
 Delete or rename every file (not the folders though!) here, except for LOADLOP0.BIK and CREDITS.BIK.
 - If you have a Steam copy of the game and it fails to launch, try copying Steam.dll and/or steam.exe into the game's installation folder.
+
+GAMEPLAY FEATURES (they work only if you install the patch - BONUS 2):
+CONTROL:
+-    Variable speedkill -- 1, 2, 3
+-    Change of logic -- 4 activation, change by pressing TAB (there are bugs)
+-    Infinite enemies -- 5
+-    Enable/disable post-processing -- T (removes blur; shadows disappear)
+-    Enable/disable speedkill camera -- V (works at long distance)
+
+CAPABILITIES:
+-    The Dark Prince does not lose HP
+-    Sandy halo
+-    Free look while executing QTE

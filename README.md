@@ -43,7 +43,6 @@ YAKBM incorporates the 20th Anniversary Mod 2.0, the Unofficial Patch, and some 
 The outfits are consistent, meaning that after getting the 2nd and 3rd outfits, it still makes sense how they look.
 They are not completely different outfits that came out of nowhere.
 
-
 ## INSTALLATION:
 1. Follow the steps included in the MOD/README.txt file.
 2. Paste the Video folder into the game's main directory and overwrite the files. For the correct video scaling you might need to drag and drop 
@@ -66,20 +65,7 @@ into the game's main directory and overwrite them. Use only one preset at the ti
 What does it offer?
 - Fixed camera 
 - Gore (removed censorship)
-- Increased fov 
-- Additional features (from Geva, described below)
-
-### CONTROL:
--    Variable speedkill -- 1, 2, 3
--    Change of logic -- 4 activation, change by pressing TAB (there are bugs)
--    Infinite enemies -- 5
--    Enable/disable post-processing -- T (removes blur; shadows disappear)
--    Enable/disable speedkill camera -- V (works at long distance)
-
-### CAPABILITIES:
--    The Dark Prince does not lose HP
--    Sandy halo
--    Free look while executing QTE
+- Increased fov (slightly lower than the one from the Unofficial Patch)
 
 ## BONUS 3 - Yet Another Kindred Blades Mod Expansion Pack (YAKBMEP):
 If you want more different skins and their variations, don't forget to check out this mod!\
@@ -87,10 +73,7 @@ If you want more different skins and their variations, don't forget to check out
 
 ## CREDITS:
 Kudos to:\
--- borisskyman for the 20th Anniversary Mod\
--- chessbase50 and creators from Kindred Blades VK group for the KB mod\
--- DawidFreeman for the Unofficial Patch\
--- u/International_Pop914, aka Strik3Papi for the Expansion Pack, advices and provided reference materials
-
--------------------------------------------------------------------------------------------------------
-[MIRROR DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
+-- borisskyman for the [20th Anniversary Mod 2.0](https://www.nexusmods.com/princeofpersiathetwothrones/mods/18)\
+-- chessbase50 and creators from [Kindred Blades VK group](https://vk.com/clubkindredblades) for the KB mod\
+-- DawidFreeman for the [Unofficial Patch](https://www.nexusmods.com/princeofpersiathetwothrones/mods/10)\
+-- u/International_Pop914, aka Strik3Papi for the [Expansion Pack](https://www.nexusmods.com/princeofpersiathetwothrones/mods/16), advices and provided reference materials
