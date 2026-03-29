@@ -13,7 +13,7 @@
 ## DESCRIPTION:
 Yet Another Kindred Blades Mod (YAKBM) is another mod that tries to resemble textures and skins from PoP T2T before it was released.
 This mod offers outfit customization. It's made in a way that the Prince's look is somewhat lore-accurate with 
-the initial trailers and screenshots that were shared before the game's release.\
+the initial trailers and screenshots that were shared before the game's release.
 
 YAKBM incorporates the 20th Anniversary Mod 2.0, the Unofficial Patch, and some assets from KB Mod.
 
