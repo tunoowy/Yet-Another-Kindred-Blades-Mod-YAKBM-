@@ -1,10 +1,10 @@
 # Yet Another Kindred Blades Mod (YAKBM)
 
 <p align="center">
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Downloads Badge" src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Commits Badge" src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Last Commit Badge" src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Repo Size Badge" src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Downloads Badge" src="https://img.shields.io/github/downloads/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/total?color=darkblue"><span>&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Commits Badge" src="https://img.shields.io/github/commit-activity/t/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=purple"><span>&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Last Commit Badge" src="https://img.shields.io/github/last-commit/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-/main"><span>&nbsp;&nbsp;&nbsp;</span>
+    <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Repo Size Badge" src="https://img.shields.io/github/repo-size/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-"><span>&nbsp;&nbsp;&nbsp;</span>
     <img alt="Prince Icon" width=20px height=20px src="https://i.imgur.com/d3J7PFg.jpeg"><img alt="Created At Badge" src="https://img.shields.io/github/created-at/lajon1/Yet-Another-Kindred-Blades-Mod-YAKBM-?color=cyan">
 </p>
 
@@ -13,7 +13,9 @@
 ## DESCRIPTION:
 Yet Another Kindred Blades Mod (YAKBM) is another mod that tries to resemble textures and skins from PoP T2T before it was released.
 This mod offers outfit customization. It's made in a way that the Prince's look is somewhat lore-accurate with 
-the initial trailers and screenshots that were shared before the game's release.
+the initial trailers and screenshots that were shared before the game's release.\
+
+YAKBM incorporates the 20th Anniversary Mod 2.0, the Unofficial Patch, and some assets from KB Mod.
 
 ## Sooo... What's changed?
 -    Logo and cursor in the main menu
@@ -68,9 +70,9 @@ What does it offer?
 - Additional features (from Geva, described below)
 
 ### CONTROL:
+-    Variable speedkill -- 1, 2, 3
 -    Change of logic -- 4 activation, change by pressing TAB (there are bugs)
 -    Infinite enemies -- 5
--    Variable speedkill -- 1, 2, 3
 -    Enable/disable post-processing -- T (removes blur; shadows disappear)
 -    Enable/disable speedkill camera -- V (works at long distance)
 
@@ -80,17 +82,15 @@ What does it offer?
 -    Free look while executing QTE
 
 ## BONUS 3 - Yet Another Kindred Blades Mod Expansion Pack (YAKBMEP):
-If you want more different skins and their variantions, don't forget to check out this mod!\
+If you want more different skins and their variations, don't forget to check out this mod!\
 [YAKBMEP DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/16)
 
 ## CREDITS:
-Author: lajon
-
 Kudos to:\
 -- borisskyman for the 20th Anniversary Mod\
--- creators from Kindred Blades VK group and chessbase50 for some assets from KB mod\
+-- chessbase50 and creators from Kindred Blades VK group for the KB mod\
 -- DawidFreeman for the Unofficial Patch\
--- u/International_Pop914, aka Strik3Papi for advices and provided reference materials
+-- u/International_Pop914, aka Strik3Papi for the Expansion Pack, advices and provided reference materials
 
 -------------------------------------------------------------------------------------------------------
 [MIRROR DOWNLOAD](https://www.nexusmods.com/princeofpersiathetwothrones/mods/15)
